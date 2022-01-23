@@ -1,0 +1,61 @@
+<form  [formGroup]="userForm" (ngSubmit)="onSubmit()">
+
+    <div class="form-group">
+        <label>FirstName</label>
+        <input type="text" formControlName="firstName">
+        <span *ngIf="userForm.get('firstName')?.errors?.['forbiddenName']">This Name Is ForbiddenName</span>
+    </div>
+
+    <div class="form-group">
+        <label>LastName</label>
+        <input type="text" formControlName="lastName">
+    </div>
+
+    <div class="form-group">
+        <label>Age</label>
+        <input type="text" formControlName="age">
+    </div>
+
+    <div class="form-group" formGroupName="address">
+        <div class="form-group">
+            <label>City</label>
+            <input type="text" formControlName="city">
+        </div>
+        
+        <div class="form-group">
+            <label>Town</label>
+            <input type="text" formControlName="town">
+        </div>
+
+        <div class="form-group">
+            <label>Zip-Code</label>
+            <input type="text" formControlName="zip">
+        </div>
+    </div>
+<!-- 
+    <div formArrayName="aliases">
+        <h2>Aliases</h2>
+        <button (click)="addAlias()" type="button">+ Add another alias</button>
+        <div *ngFor="let alias of aliases.controls; let i=index">
+        The repeated alias template
+        <label for="alias-{{ i }}">Alias:</label>
+        <input id="alias-{{ i }}" type="text" [formControlName]="i">
+        <button (click)="removeAliases(i)">DELETE</button>
+        </div>
+        </div> -->
+        
+        <button type="submit" [disabled]="userForm.invalid">SAVE</button>
+
+</form>
+
+<!-- <input type="text" [(ngModel)]="userName" required minlength="5" #name="ngModel">
+
+<p>status - {{name.status}}</p>
+<p>dirty - {{name.dirty}}</p>
+<p>touched - {{name.touched}}</p>
+<p>valid - {{name.valid}}</p>
+
+<div class="alert">
+    <div *ngIf="name.errors?.['required']">Name Is Required</div>
+    <div *ngIf="name.errors?.['minlength']">Your Name Shoud Be More Characters</div>
+</div> -->
